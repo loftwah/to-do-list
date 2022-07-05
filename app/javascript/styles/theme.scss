@@ -1,0 +1,88 @@
+$enable-shadows: false;
+$jumbotron-padding: 1.5rem;
+
+@import 'bootstrap/scss/_functions';
+@import 'bootstrap/scss/_variables';
+@import 'bootstrap/scss/mixins/_breakpoints';
+
+html, body {
+  height: 100%;
+}
+
+#main {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+#post-count {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 4px 6px;
+  background: $gray-400;
+  border-bottom-right-radius: $border-radius;
+  border-top-left-radius: $border-radius;
+  font-size: $small-font-size;
+}
+
+td[data-action] {
+  cursor: pointer;
+}
+
+td em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+.form-inputs, .form-actions {
+  margin-top: 1rem;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 75%;
+  background: $gray-700;
+  color: $gray-200;
+
+  dl.row {
+    margin-bottom: 0;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  #main {
+    margin-bottom: 180px;
+  }
+
+  footer {
+    position: fixed;
+
+    dd {
+      margin-bottom: 0;
+    }
+  }
+}
+
+img.square {
+  object-fit: cover;
+  width: 172px;
+  height: 172px;
+}
+
+img.muted {
+  opacity: 0.3;
+}
+
+.fileinput-button {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background-color: $gray-200;
+  color: $gray-700;
+
+  .message {
+    padding: 15px;
+  }
+}

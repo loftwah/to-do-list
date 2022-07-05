@@ -1,0 +1,26 @@
+- cache [ post, search_string ] do
+  tr data-controller='row-link' data-row-link-href= url_for(post)
+    td data-action="click->row-link#click"
+      - if post.clips_count > 0
+        i.fas.fa-image
+        '
+
+      strong
+        - if search_string && post.search_highlights[:title]
+          == post.search_highlights[:title]
+        - else
+          = post.title
+
+      '
+      span.text-muted
+        - if search_string && post.search_highlights[:content]
+          == '&hellip;'
+          == post.search_highlights[:content]
+          == '&hellip;'
+        - else
+          = post.content_as_plaintext.truncate(300)
+
+    td.text-right.d-none.d-md-table-cell.text-nowrap data-action="click->row-link#click"
+      time.badge.badge-secondary datetime=post.updated_at.iso8601
+        => distance_of_time_in_words_to_now post.updated_at
+        | ago

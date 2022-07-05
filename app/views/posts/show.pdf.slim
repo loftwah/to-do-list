@@ -1,0 +1,15 @@
+h1
+  = @post.title
+
+p
+  em
+    | Updated
+    '
+    = time_tag(@post.updated_at)
+
+- if @post.clips.present?
+  - @post.clips.each do |clip|
+    = image_tag clip.image_url(:thumbnail), \
+                class: 'img-thumbnail'
+
+== @post.content

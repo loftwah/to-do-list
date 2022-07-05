@@ -1,0 +1,44 @@
+= simple_form_for post, data: { controller: 'form-validator', 'parsley-excluded' => '[disabled]' }  do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title, placeholder: 'Title', label: false
+
+    ul.nav.nav-tabs role="tablist"
+      li.nav-item
+        a.nav-link.active data-toggle="tab" href="#text-tab" role="tab"  Text
+      li.nav-item
+        a.nav-link data-toggle="tab" href="#clips-tab" role="tab"  Images
+      li.nav-item
+        a.nav-link data-toggle="tab" href="#copyright-tab" role="tab"  Copyright
+
+    .tab-content
+      #text-tab.tab-pane.active role="tabpanel"
+        = f.input :content, as: :hidden
+        trix-editor input="post_content" placeholder="Content" id="trix-post-content"
+
+      #clips-tab.tab-pane role="tabpanel" data-controller="upload"
+        .fileinput-button.mt-3
+          input multiple="multiple" type="file"
+          .message Drop files here or click to upload
+
+          .row.no-gutters#js-images
+            - post.clips.select(&:image_stored?).each do |clip|
+              .col-2
+                .mb-2.mr-2
+                  = image_tag clip.image_url(:thumbnail), class: 'img-thumbnail square'
+
+        script#template-upload type='text/x-tmpl'
+          .col-2
+            .mb-2.mr-2
+              img
+              input type="hidden" name="post[clips_attributes][][image]"
+              .progress
+                .progress-bar role="progressbar" style="height: 2px"
+
+      #copyright-tab.tab-pane role="tabpanel"
+        = f.input :copyright, as: :hidden
+        trix-editor input="post_copyright" placeholder="Copyright" id="trix-post-copyright"
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'

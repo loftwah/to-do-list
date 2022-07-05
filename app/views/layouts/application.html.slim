@@ -1,0 +1,28 @@
+doctype html
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
+    title= [ title, 'DockerRails' ].compact.join(' :: ')
+    = csrf_meta_tags
+    = csp_meta_tag
+    = action_cable_meta_tag
+    = piwik_meta_tags
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body data-controller="tooltip icons analytics"
+    = render 'layouts/navbar'
+
+    #main
+      .container
+        - if alert
+          p.alert.alert-danger
+            = alert
+        - if notice
+          p.alert.alert-info
+            = notice
+        = yield
+
+    = render 'layouts/footer'

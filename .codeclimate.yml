@@ -1,0 +1,33 @@
+---
+engines:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+  eslint:
+    enabled: true
+    channel: eslint-5
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+    channel: rubocop-0-74
+ratings:
+  paths:
+  - Gemfile.lock
+  - "**.erb"
+  - "**.rb"
+  - "**.rhtml"
+  - "**.slim"
+  - "**.js"
+exclude_paths:
+- config/
+- db/
+- spec/
+- vendor/
