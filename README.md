@@ -1,12 +1,8 @@
-# Docker-Rails
+# To do list
 
-[![Maintainability](https://codeclimate.com/github/ledermann/docker-rails/badges/gpa.svg)](https://codeclimate.com/github/ledermann/docker-rails)
-[![](https://images.microbadger.com/badges/image/ledermann/docker-rails.svg)](https://microbadger.com/images/ledermann/docker-rails)
+This is an application for me to learn how to use Ruby and Rails with Docker for a production ready deployment. The application is a simple CMS (content management system) that allows the user to manage posts. It used a CRUD (create, read, update, delete) pattern to create the posts and also has some other non-default features.
 
-Simple Rails 7.0 application to demonstrate using Docker for production deployment. The application is a very simple kind of CMS (content management system) allowing to manage posts. Beside the boring [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) functionality it has some non-default features.
-
-This project aims to build a lean Docker image for use in production. Therefore it's based on the official Alpine Ruby image, uses multi-stage building and some [optimizations that I described in my blog](https://ledermann.dev/blog/2018/04/19/dockerize-rails-the-lean-way/). This results in an image size of ~80MB.
-
+This project aims to build a lean Docker image for use in production. Therefore it's based on the official Alpine Ruby image, uses multi-stage building and some [optimizations that I described in this blog post](https://ledermann.dev/blog/2018/04/19/dockerize-rails-the-lean-way/). This results in an image size of ~80MB.
 
 ## Features
 
@@ -25,12 +21,6 @@ This project aims to build a lean Docker image for use in production. Therefore 
 - JavaScript with [Stimulus](https://stimulusjs.org/)
 - Bundle JavaScript libraries with [Yarn](https://yarnpkg.com)
 
-
-## Why?
-
-This project demonstrates my way of building Rails applications. The techniques used to build the app should not be considered as "best practice", maybe there are better ways to build. Any [feedback](https://github.com/ledermann/docker-rails/issues/new) would be appreciated.
-
-
 ## Multi container architecture
 
 There is an example **docker-compose.production.yml**. The whole stack is divided into multiple different containers:
@@ -42,40 +32,30 @@ There is an example **docker-compose.production.yml**. The whole stack is divide
 - **redis:** In-memory key/value store (used by Sidekiq, ActionCable and for caching)
 - **backup:** Regularly backups the database as a dump via CRON to an Amazon S3 bucket
 
-## Check it out!
+## Usage
 
 To start up the application in your local Docker environment:
 
 ```bash
-git clone https://github.com/ledermann/docker-rails.git
-cd docker-rails
+git clone https://github.com/loftwah/to-do-list.git
+cd to-do-list
 docker-compose build
 docker-compose up
 ```
 
-Wait some minutes while the database will be prepared by fetching articles from Wikipedia. Then,
-navigate your browser to `http://[DOCKER_HOST]:[DOCKER_PORT]`.
+It will take some to come up, so you'll need to wait a little while but then you can navigate to [localhost:52243](http://localhost:52243).
 
-Sign in to the admin account:
+Sign in to the admin account with the following credentials:
 
-* Username: `admin@example.org`
-* Password: `secret`
-
-Enjoy!
-
+- Username: `admin@example.org`
+- Password: `secret`
 
 ## Tests / CI
 
 On every push, the test suite (including [RuboCop](https://github.com/bbatsov/rubocop) checks) is performed via [GitHub Actions](https://github.com/ledermann/docker-rails/actions). If successful, a production image is built and pushed to GitHub Container Registry.
-
 
 ## Production deployment
 
 The Docker image build includes precompiled assets only (no node_modules and no sources). The [spec folder](/spec) is removed and the Alpine packages for Node and Yarn are not installed.
 
 The stack is ready to host with [traefik](https://traefik.io/) or [nginx proxy](https://github.com/jwilder/nginx-proxy) and [letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion).
-
-
-## Demo
-
-A demo installation is set up on [https://docker-rails.ledermann.dev](https://docker-rails.ledermann.dev).
