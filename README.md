@@ -88,7 +88,7 @@ Sign in to the admin account with the following credentials:
 
 ## Tests / CI
 
-On every push, the test suite (including [RuboCop](https://github.com/bbatsov/rubocop) checks) is performed via [GitHub Actions](https://github.com/ledermann/docker-rails/actions). If successful, a production image is built and pushed to GitHub Container Registry.
+On every push, the test suite (including [RuboCop](https://github.com/bbatsov/rubocop) checks) is performed via [GitHub Actions](https://github.com/loftwah/to-do-list/actions). If successful, a production image is built and pushed to GitHub Container Registry.
 
 ## Production deployment
 

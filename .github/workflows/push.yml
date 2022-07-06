@@ -90,13 +90,13 @@ jobs:
         run: |
           export COMMIT_TIME=$(git show -s --format=%cD ${GITHUB_SHA})
           export COMMIT_SHA=${GITHUB_SHA}
-          docker buildx build --build-arg COMMIT_TIME --build-arg COMMIT_SHA -t ghcr.io/ledermann/docker-rails/docker-rails:latest .
-          docker push ghcr.io/ledermann/docker-rails/docker-rails:latest
+          docker buildx build --build-arg COMMIT_TIME --build-arg COMMIT_SHA -t ghcr.io/loftwah/to-do-list/docker-rails:latest .
+          docker push ghcr.io/loftwah/to-do-list/docker-rails:latest
           curl -X POST ${{ secrets.DEPLOY_HOOK_APP }}
           curl -X POST ${{ secrets.DEPLOY_HOOK_WORKER }}
 
       - name: Build and push the STABLE image
         if: github.ref == 'refs/heads/master'
         run: |
-          docker buildx build -t ghcr.io/ledermann/docker-rails/docker-rails:stable .
-          docker push ghcr.io/ledermann/docker-rails/docker-rails:stable
+          docker buildx build -t ghcr.io/loftwah/to-do-list/docker-rails:stable .
+          docker push ghcr.io/loftwah/to-do-list/docker-rails:stable
