@@ -1,6 +1,6 @@
 # To do list
 
-This is an application for me to learn how to use Ruby and Rails with Docker for a production ready deployment. The application is a simple CMS (content management system) that allows the user to manage posts. It used a CRUD (create, read, update, delete) pattern to create the posts and also has some other non-default features.
+This is an application for me to learn how to use Ruby and Rails with Docker for a production ready deployment. The application is a simple CMS (content management system) that allows the user to manage posts. It used a CRUD (create, read, update, delete) pattern to create the posts and also has some other non-default features. This is designed for Amazon Web Services (AWS) and is deployed on AWS EC2, but could also be used to ECS.
 
 This project aims to build a lean Docker image for use in production. Therefore it's based on the official Alpine Ruby image, uses multi-stage building and some [optimizations that I described in this blog post](https://ledermann.dev/blog/2018/04/19/dockerize-rails-the-lean-way/). This results in an image size of ~80MB.
 
