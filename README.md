@@ -32,6 +32,42 @@ There is an example **docker-compose.production.yml**. The whole stack is divide
 - **redis:** In-memory key/value store (used by Sidekiq, ActionCable and for caching)
 - **backup:** Regularly backups the database as a dump via CRON to an Amazon S3 bucket
 
+## Environmental Variables
+
+This application uses the following environmental variables:
+
+```bash
+ELASTICSEARCH_HOST=elasticsearch
+REDIS_SIDEKIQ_URL=redis://redis:6379/0
+REDIS_CABLE_URL=redis://redis:6379/1
+REDIS_CACHE_URL=redis://redis:6379/2
+SECRET_KEY_BASE=f0ee8496d1ddeb69fa0980d0580ff0f174262e61b53e8a318c990a193661f45f84b07a995d33ca8749eb6e0085d375201d319ed0fdaab9aa469e3b9b96f269d6
+DB_HOST=db
+DB_USER=postgres
+DB_PASSWORD=foobar123
+RAILS_MAX_THREADS
+APP_HOST
+APP_SSL
+FRONTEND_HOST
+APP_ADMIN_EMAIL=admin@example.org
+APP_ADMIN_PASSWORD=secret
+APP_EMAIL=reply@example.org
+PIWIK_HOST=piwik.example.org
+PIWIK_ID=42
+SMTP_SERVER
+SMTP_PORT
+SMTP_DOMAIN
+SMTP_USERNAME
+SMTP_PASSWORD
+SMTP_AUTHENTICATION
+SMTP_ENABLE_STARTTLS_AUTO
+AWS_ACCESS_KEY_ID=1234
+AWS_SECRET_ACCESS_KEY=1234abcdef
+AWS_BUCKET=mybucket
+AWS_REGION=ap-southeast-2
+BLAZER_DATABASE_URL
+```
+
 ## Usage
 
 To start up the application in your local Docker environment:
